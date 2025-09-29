@@ -2,10 +2,10 @@ import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { LoginScreen } from '../../screens/Login';
-import { RegisterScreen } from '../../screens/Register';
-import { AuthProvider } from '../../context/auth';
-import { MockUserRepository } from '../../core/infra/repositories/MockUserRepository';
+import { LoginScreen } from '../screens/Login';
+import { RegisterScreen } from '../screens/Register';
+import { AuthProvider } from '../context/auth';
+import { MockUserRepository } from '../core/infra/repositories/MockUserRepository';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,8 +45,8 @@ describe('LoginScreen Integration', () => {
     // For now, let's just check if the handleLogin was called
     // and the user is in the repository
     await waitFor(async () => {
-        const user = await MockUserRepository.getInstance().findByEmail('test@example.com');
-        expect(user).not.toBeNull();
+      const user = await MockUserRepository.getInstance().findByEmail('test@example.com');
+      expect(user).not.toBeNull();
     });
   });
 });
