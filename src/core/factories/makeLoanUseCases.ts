@@ -8,9 +8,9 @@ import { MockUserRepository } from '../infra/repositories/MockUserRepository';
 import { MockVinylRecordRepository } from '../infra/repositories/MockVinylRecordRepository';
 
 export function makeLoanUseCases() {
-  const loanRepository: ILoanRepository = new MockLoanRepository();
-  const userRepository: IUserRepository = new MockUserRepository();
-  const vinylRecordRepository: IVinylRecordRepository = new MockVinylRecordRepository();
+  const loanRepository: ILoanRepository = MockLoanRepository.getInstance();
+  const userRepository: IUserRepository = MockUserRepository.getInstance();
+  const vinylRecordRepository: IVinylRecordRepository = MockVinylRecordRepository.getInstance();
 
   const borrowVinylRecord = new BorrowVinylRecord(
     loanRepository,

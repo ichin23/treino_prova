@@ -2,7 +2,17 @@ import { ILoanRepository } from '../../domain/repositories/ILoanRepository';
 import { Loan } from '../../domain/entities/Loan';
 
 export class MockLoanRepository implements ILoanRepository {
+  private static instance: MockLoanRepository;
   private loans: Loan[] = [];
+
+  private constructor() {}
+
+  public static getInstance(): MockLoanRepository {
+    if (!MockLoanRepository.instance) {
+      MockLoanRepository.instance = new MockLoanRepository();
+    }
+    return MockLoanRepository.instance;
+  }
 
   async save(loan: Loan): Promise<void> {
     this.loans.push(loan);
@@ -25,5 +35,9 @@ export class MockLoanRepository implements ILoanRepository {
     if (loanIndex !== -1) {
       this.loans[loanIndex] = loan;
     }
+  }
+
+  public reset(): void {
+    this.loans = [];
   }
 }

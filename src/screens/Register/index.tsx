@@ -5,10 +5,36 @@ import { MaterialIcons, Entypo, Ionicons } from "@expo/vector-icons";
 import { styles } from './styles';
 import { colors } from '../../styles/colors';
 import { LoginTypes } from '../../navigations/LoginStackNavigation';
-import { ComponentButtonInterface } from '../../components';
-
+import { ComponentButtonInterface, ComponentLoading } from '../../components';
+import { makeUserUseCases } from '../../core/factories/makeUserUseCases';
 
 export function RegisterScreen({ navigation }: LoginTypes) {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const userUseCases = makeUserUseCases();
+
+  async function handleRegister() {
+    setLoading(true);
+    setError(null);
+    try {
+      await userUseCases.registerUser.execute({
+        name,
+        email,
+        password,
+        latitude: 0, // Mock data
+        longitude: 0, // Mock data
+      });
+      Alert.alert('Success', 'User registered successfully');
+      navigation.navigate('Login');
+    } catch (err) {
+      setError('Failed to register user');
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -20,6 +46,8 @@ export function RegisterScreen({ navigation }: LoginTypes) {
             placeholderTextColor={colors.third}
             style={styles.input}
             placeholder="Nome"
+            value={name}
+            onChangeText={setName}
           />
         </View>
         <View style={styles.formRow}>
@@ -30,6 +58,8 @@ export function RegisterScreen({ navigation }: LoginTypes) {
             placeholder="Email"
             keyboardType="email-address"
             autoCapitalize="none"
+            value={email}
+            onChangeText={setEmail}
           />
         </View>
         <View style={styles.formRow}>
@@ -40,9 +70,16 @@ export function RegisterScreen({ navigation }: LoginTypes) {
             placeholder="Senha"
             secureTextEntry={true}
             autoCapitalize="none"
+            value={password}
+            onChangeText={setPassword}
           />
         </View>
-        <ComponentButtonInterface title='Salvar' type='secondary' onPress={() => console.log('Salvar')} />
+        {loading ? (
+          <ComponentLoading />
+        ) : (
+          <ComponentButtonInterface title='Salvar' type='secondary' onPress={handleRegister} disabled={loading} />
+        )}
+        {error && <Text style={{ color: 'red' }}>{error}</Text>}
         <ComponentButtonInterface title='Voltar' type='primary' onPress={() => navigation.navigate('Login')} />
       </KeyboardAvoidingView>
     </View>

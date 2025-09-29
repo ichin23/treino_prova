@@ -2,7 +2,17 @@ import { IVinylRecordRepository } from '../../domain/repositories/IVinylRecordRe
 import { VinylRecord } from '../../domain/entities/VinylRecord';
 
 export class MockVinylRecordRepository implements IVinylRecordRepository {
+  private static instance: MockVinylRecordRepository;
   private records: VinylRecord[] = [];
+
+  private constructor() {}
+
+  public static getInstance(): MockVinylRecordRepository {
+    if (!MockVinylRecordRepository.instance) {
+      MockVinylRecordRepository.instance = new MockVinylRecordRepository();
+    }
+    return MockVinylRecordRepository.instance;
+  }
 
   async save(record: VinylRecord): Promise<void> {
     this.records.push(record);
@@ -25,5 +35,9 @@ export class MockVinylRecordRepository implements IVinylRecordRepository {
 
   async delete(id: string): Promise<void> {
     this.records = this.records.filter(record => record.id !== id);
+  }
+
+  public reset(): void {
+    this.records = [];
   }
 }

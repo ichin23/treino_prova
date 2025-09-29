@@ -2,7 +2,17 @@ import { IUserRepository } from '../../domain/repositories/IUserRepository';
 import { User } from '../../domain/entities/User';
 
 export class MockUserRepository implements IUserRepository {
+  private static instance: MockUserRepository;
   private users: User[] = [];
+
+  private constructor() {}
+
+  public static getInstance(): MockUserRepository {
+    if (!MockUserRepository.instance) {
+      MockUserRepository.instance = new MockUserRepository();
+    }
+    return MockUserRepository.instance;
+  }
 
   async save(user: User): Promise<void> {
     this.users.push(user);
@@ -25,5 +35,9 @@ export class MockUserRepository implements IUserRepository {
 
   async delete(id: string): Promise<void> {
     this.users = this.users.filter(user => user.id !== id);
+  }
+
+  public reset(): void {
+    this.users = [];
   }
 }

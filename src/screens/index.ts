@@ -1,5 +1,5 @@
 export { LoginScreen as ScreenLogin } from "./Login"
 export { RegisterScreen as ScreenRegister } from "./Register"
 export { PerfilScreen as ScreenPerfil } from "./Perfil"
-export { CameraScreen as ScreenCamera } from "./Camera"
-export { ListaScreen as ScreenLista } from "./Lista"
+export { ListVinylRecordsScreen as ScreenListVinylRecords } from "./ListVinylRecords"
+export { VinylRecordDetailsScreen as ScreenVinylRecordDetails } from "./VinylRecordDetails"

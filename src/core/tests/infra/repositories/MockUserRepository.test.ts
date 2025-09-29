@@ -6,6 +6,9 @@ import { Password } from '../../../domain/value-objects/Password';
 import { GeoCoordinates } from '../../../domain/value-objects/GeoCoordinates';
 
 describe('MockUserRepository', () => {
+  beforeEach(() => {
+    MockUserRepository.getInstance().reset();
+  });
   it('should not throw when updating a non-existent user', async () => {
     const userRepository = new MockUserRepository();
     const user = User.create(

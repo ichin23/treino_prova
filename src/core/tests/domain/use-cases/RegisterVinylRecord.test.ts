@@ -2,6 +2,9 @@ import { RegisterVinylRecord } from '../../../domain/use-cases/RegisterVinylReco
 import { MockVinylRecordRepository } from '../../../infra/repositories/MockVinylRecordRepository';
 
 describe('RegisterVinylRecord', () => {
+  beforeEach(() => {
+    MockVinylRecordRepository.getInstance().reset();
+  });
   it('should register a new vinyl record', async () => {
     const vinylRecordRepository = new MockVinylRecordRepository();
     const registerVinylRecord = new RegisterVinylRecord(vinylRecordRepository);

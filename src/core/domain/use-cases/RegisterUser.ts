@@ -18,7 +18,7 @@ export class RegisterUser {
     const { name, email, password, latitude, longitude } = params;
 
     const userExists = await this.userRepository.findByEmail(email);
-
+    
     if (userExists) {
       throw new Error('User already exists');
     }

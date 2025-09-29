@@ -8,5 +8,6 @@ describe('makeVinylRecordUseCases', () => {
     expect(useCases.updateVinylRecord).toBeDefined();
     expect(useCases.deleteVinylRecord).toBeDefined();
     expect(useCases.findVinylRecord).toBeDefined();
+    expect(useCases.findAllVinylRecords).toBeDefined();
   });
 });

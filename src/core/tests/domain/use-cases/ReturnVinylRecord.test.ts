@@ -7,6 +7,11 @@ import { MockUserRepository } from '../../../infra/repositories/MockUserReposito
 import { MockVinylRecordRepository } from '../../../infra/repositories/MockVinylRecordRepository';
 
 describe('ReturnVinylRecord', () => {
+  beforeEach(() => {
+    MockUserRepository.getInstance().reset();
+    MockVinylRecordRepository.getInstance().reset();
+    MockLoanRepository.getInstance().reset();
+  });
   it('should return a vinyl record', async () => {
     const userRepository = new MockUserRepository();
     const vinylRecordRepository = new MockVinylRecordRepository();

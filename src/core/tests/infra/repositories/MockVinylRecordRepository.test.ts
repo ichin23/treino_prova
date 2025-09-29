@@ -4,6 +4,9 @@ import { Name } from '../../../domain/value-objects/Name';
 import { Photo } from '../../../domain/value-objects/Photo';
 
 describe('MockVinylRecordRepository', () => {
+  beforeEach(() => {
+    MockVinylRecordRepository.getInstance().reset();
+  });
   it('should not throw when updating a non-existent vinyl record', async () => {
     const vinylRecordRepository = new MockVinylRecordRepository();
     const vinylRecord = VinylRecord.create(
