@@ -3,5 +3,11 @@
   "compilerOptions": {
     "strict": true,
     "jsx": "react-jsx",
+    "target": "es2016",
+    "module": "es2015",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "outDir": "./dist"
   }
 }
