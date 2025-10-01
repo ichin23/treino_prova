@@ -10,28 +10,33 @@ import { colors } from "../styles/colors";
 import { makeVinylRecordUseCases } from "../core/factories/makeVinylRecordUseCases";
 import { useEffect, useState } from "react";
 import { VinylRecord } from "../core/domain/entities/VinylRecord";
+import { useIsFocused } from "@react-navigation/native";
 
 export function ListVinylRecordsScreen({ navigation }: VinylRecordTypes) {
   const [records, setRecords] = useState<VinylRecord[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const vinylRecordUseCases = makeVinylRecordUseCases();
+  const isFocused = useIsFocused();
+
+  async function fetchRecords() {
+    setLoading(true);
+    setError(null);
+    try {
+      const allRecords = await vinylRecordUseCases.findAllVinylRecords.execute();
+      setRecords(allRecords);
+    } catch (err) {
+      setError("Failed to fetch records");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   useEffect(() => {
-    async function fetchRecords() {
-      setLoading(true);
-      setError(null);
-      try {
-        const allRecords = await vinylRecordUseCases.findAllVinylRecords.execute();
-        setRecords(allRecords);
-      } catch (err) {
-        setError("Failed to fetch records");
-      } finally {
-        setLoading(false);
-      }
+    if (isFocused) {
+      fetchRecords();
     }
-    fetchRecords();
-  }, []);
+  }, [isFocused]);
 
   const renderItem = ({ item }: { item: VinylRecord }) => (
     <View style={styles.itemContainer}>
@@ -44,6 +49,7 @@ export function ListVinylRecordsScreen({ navigation }: VinylRecordTypes) {
 
   return (
     <View style={styles.container}>
+      <ComponentButtonInterface title="Register New Vinyl Record" type="secondary" onPress={() => navigation.navigate("RegisterVinylRecord")} />
       {loading ? (
         <ComponentLoading />
       ) : error ? (
