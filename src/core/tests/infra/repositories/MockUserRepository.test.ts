@@ -10,7 +10,7 @@ describe('MockUserRepository', () => {
     MockUserRepository.getInstance().reset();
   });
   it('should not throw when updating a non-existent user', async () => {
-    const userRepository = new MockUserRepository();
+    const userRepository = MockUserRepository.getInstance();
     const user = User.create(
       '1',
       Name.create('John Doe'),

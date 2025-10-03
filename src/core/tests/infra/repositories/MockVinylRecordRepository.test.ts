@@ -8,7 +8,7 @@ describe('MockVinylRecordRepository', () => {
     MockVinylRecordRepository.getInstance().reset();
   });
   it('should not throw when updating a non-existent vinyl record', async () => {
-    const vinylRecordRepository = new MockVinylRecordRepository();
+    const vinylRecordRepository = MockVinylRecordRepository.getInstance();
     const vinylRecord = VinylRecord.create(
       '1',
       Name.create('The Beatles'),
