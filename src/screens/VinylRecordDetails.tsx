@@ -4,6 +4,8 @@ import { ComponentButtonInterface } from "../components";
 import { VinylRecord } from "../core/domain/entities/VinylRecord";
 import { VinylRecordTypes } from "../navigations/VinylRecordStackNavigation";
 import { makeVinylRecordUseCases } from "../core/factories/makeVinylRecordUseCases";
+import { Entypo } from "@expo/vector-icons";
+import { colors } from "../styles/colors";
 
 
 export function VinylRecordDetailsScreen({ navigation }: VinylRecordTypes) {
@@ -39,13 +41,23 @@ export function VinylRecordDetailsScreen({ navigation }: VinylRecordTypes) {
             <Text>Album: {record.album.value}</Text>
             <Text>Year: {record.year}</Text>
             <Text>Number of Tracks: {record.numberOfTracks}</Text>
-            <ComponentButtonInterface type="secondary" title="Edit"
-                onPress={() => navigation.navigate("EditVinylRecord", { record })}
-            />
-            <ComponentButtonInterface type="third" title="Delete"
-                onPress={handleDelete}
-            />
-            <ComponentButtonInterface type="primary" title="Back"
+            <View style={styles.contentRow}>
+                <ComponentButtonInterface type="secondary" title="Edit"
+                    onPress={() => navigation.navigate("EditVinylRecord", { record })}
+                >
+                    <ComponentButtonInterface.Icon>
+                        <Entypo name="pencil" size={24} color={colors.white} />
+                    </ComponentButtonInterface.Icon>
+                </ComponentButtonInterface>
+                <ComponentButtonInterface type="danger" title="Delete"
+                    onPress={handleDelete}
+                >
+                    <ComponentButtonInterface.Icon>
+                        <Entypo name="trash" size={24} color={colors.white} />
+                    </ComponentButtonInterface.Icon>
+                </ComponentButtonInterface>
+            </View>
+            <ComponentButtonInterface type="primary" title="Voltar"
                 onPress={() => navigation.navigate("ListVinylRecords")}
             />
         </View>
@@ -56,5 +68,8 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         justifyContent: "center"
+    },
+    contentRow: {
+        flexDirection: "row"
     }
 })

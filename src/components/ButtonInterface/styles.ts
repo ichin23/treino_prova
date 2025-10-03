@@ -2,26 +2,37 @@ import { StyleSheet } from 'react-native';
 import { colors } from '../../styles/colors';
 
 export const styles = StyleSheet.create({
-  buttonPrimary: {
+  base: {
+    borderRadius: 5,
+    margin: 10,
+    padding: 10
+  },
+  primary: {
     backgroundColor: colors.primary,
-    borderRadius: 5,
-    margin: 10,
   },
-  buttonSecondary: {
+  secondary: {
     backgroundColor: colors.secondary,
-    borderRadius: 5,
-    margin: 10,
   },
-  buttonThird: {
+  third: {
     backgroundColor: colors.third,
-    borderRadius: 5,
-    margin: 10,
+  },
+  danger: {
+    backgroundColor: colors.danger
   },
   text: {
     color: colors.white,
     fontWeight: "bold",
-    padding: 10,
     fontSize: 18,
     textAlign: "center"
+  },
+  contentRow: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    gap: 8 
+  },
+  iconContainer: { 
+    marginHorizontal: 4,
+    padding: 2,
+    color: colors.white
   }
 })
