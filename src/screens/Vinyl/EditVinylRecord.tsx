@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, View, Text, TextInput, Alert, Platform } from 'react-native';
 import { useRoute } from '@react-navigation/native';
-import { styles } from './Register/styles';
-import { colors } from '../styles/colors';
-import { ComponentButtonInterface, ComponentLoading } from '../components';
-import { makeVinylRecordUseCases } from '../core/factories/makeVinylRecordUseCases';
-import { VinylRecord } from '../core/domain/entities/VinylRecord';
-import { VinylRecordTypes } from '../navigations/VinylRecordStackNavigation';
+import { styles } from '../Register/styles';
+import { colors } from '../../styles/colors';
+import { ComponentButtonInterface, ComponentLoading } from '../../components';
+import { makeVinylRecordUseCases } from '../../core/factories/makeVinylRecordUseCases';
+import { VinylRecord } from '../../core/domain/entities/VinylRecord';
+import { VinylRecordTypes } from '../../navigations/VinylRecordStackNavigation';
 
 export function EditVinylRecordScreen({ navigation }: VinylRecordTypes) {
   const route = useRoute();

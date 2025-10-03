@@ -1,11 +1,11 @@
 import { Alert, StyleSheet, Text, View } from "react-native";
 import { useRoute } from "@react-navigation/native";
-import { ComponentButtonInterface } from "../components";
-import { VinylRecord } from "../core/domain/entities/VinylRecord";
-import { VinylRecordTypes } from "../navigations/VinylRecordStackNavigation";
-import { makeVinylRecordUseCases } from "../core/factories/makeVinylRecordUseCases";
+import { ComponentButtonInterface } from "../../components";
+import { VinylRecord } from "../../core/domain/entities/VinylRecord";
+import { VinylRecordTypes } from "../../navigations/VinylRecordStackNavigation";
+import { makeVinylRecordUseCases } from "../../core/factories/makeVinylRecordUseCases";
 import { Entypo } from "@expo/vector-icons";
-import { colors } from "../styles/colors";
+import { colors } from "../../styles/colors";
 
 
 export function VinylRecordDetailsScreen({ navigation }: VinylRecordTypes) {
@@ -47,6 +47,7 @@ export function VinylRecordDetailsScreen({ navigation }: VinylRecordTypes) {
                 >
                     <ComponentButtonInterface.Icon>
                         <Entypo name="pencil" size={24} color={colors.white} />
+                        <Text>Editar</Text>
                     </ComponentButtonInterface.Icon>
                 </ComponentButtonInterface>
                 <ComponentButtonInterface type="danger" title="Delete"
@@ -54,6 +55,7 @@ export function VinylRecordDetailsScreen({ navigation }: VinylRecordTypes) {
                 >
                     <ComponentButtonInterface.Icon>
                         <Entypo name="trash" size={24} color={colors.white} />
+                        <Text>Remover</Text>
                     </ComponentButtonInterface.Icon>
                 </ComponentButtonInterface>
             </View>

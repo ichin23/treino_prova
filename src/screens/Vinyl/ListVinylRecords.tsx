@@ -4,12 +4,12 @@ import {
   Text,
   View,
 } from "react-native";
-import { ComponentButtonInterface, ComponentLoading } from "../components";
-import { VinylRecordTypes } from "../navigations/VinylRecordStackNavigation";
-import { colors } from "../styles/colors";
-import { makeVinylRecordUseCases } from "../core/factories/makeVinylRecordUseCases";
+import { ComponentButtonInterface, ComponentLoading } from "../../components";
+import { VinylRecordTypes } from "../../navigations/VinylRecordStackNavigation";
+import { colors } from "../../styles/colors";
+import { makeVinylRecordUseCases } from "../../core/factories/makeVinylRecordUseCases";
 import { useEffect, useState } from "react";
-import { VinylRecord } from "../core/domain/entities/VinylRecord";
+import { VinylRecord } from "../../core/domain/entities/VinylRecord";
 import { useIsFocused } from "@react-navigation/native";
 
 export function ListVinylRecordsScreen({ navigation }: VinylRecordTypes) {
@@ -43,7 +43,7 @@ export function ListVinylRecordsScreen({ navigation }: VinylRecordTypes) {
       <Text style={styles.itemTitle}>
         {item.band.value} - {item.album.value}
       </Text>
-      <ComponentButtonInterface title="detalhes" type="primary" onPress={() => navigation.navigate("VinylRecordDetails", {record: item})} />
+      <ComponentButtonInterface title="detalhes" type="primary" onPress={() => navigation.navigate("VinylRecordDetails", { record: item })} />
     </View>
   );
 

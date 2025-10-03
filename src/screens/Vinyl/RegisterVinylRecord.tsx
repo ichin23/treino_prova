@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, View, Text, TextInput, Alert, Platform } from 'react-native';
-import { styles } from './Register/styles';
-import { colors } from '../styles/colors';
-import { ComponentButtonInterface, ComponentLoading } from '../components';
-import { makeVinylRecordUseCases } from '../core/factories/makeVinylRecordUseCases';
-import { VinylRecordTypes } from '../navigations/VinylRecordStackNavigation';
+import { styles } from '../Register/styles';
+import { colors } from '../../styles/colors';
+import { ComponentButtonInterface, ComponentLoading } from '../../components';
+import { makeVinylRecordUseCases } from '../../core/factories/makeVinylRecordUseCases';
+import { VinylRecordTypes } from '../../navigations/VinylRecordStackNavigation';
 
 export function RegisterVinylRecordScreen({ navigation }: VinylRecordTypes) {
   const [band, setBand] = useState('');
