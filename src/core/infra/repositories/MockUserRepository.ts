@@ -1,11 +1,21 @@
 import { IUserRepository } from '../../domain/repositories/IUserRepository';
 import { User } from '../../domain/entities/User';
+import { Name } from '../../domain/value-objects/Name';
+import { Email } from '../../domain/value-objects/Email';
+import { Password } from '../../domain/value-objects/Password';
+import { GeoCoordinates } from '../../domain/value-objects/GeoCoordinates';
 
 export class MockUserRepository implements IUserRepository {
   private static instance: MockUserRepository;
-  private users: User[] = [];
+  private users: User[] = [{
+    id: "1",
+    name: Name.create("Lázaro"),
+    email: Email.create("lazarodu@gmail.com"),
+    password: Password.create("hashed_123"),
+    location: GeoCoordinates.create(50, 100)
+  }];
 
-  private constructor() {}
+  private constructor() { }
 
   public static getInstance(): MockUserRepository {
     if (!MockUserRepository.instance) {

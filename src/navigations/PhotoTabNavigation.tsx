@@ -1,15 +1,15 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { ScreenPerfil } from '../screens'
+import { ScreenPhoto } from '../screens'
 import { colors } from '../styles/colors'
 import { Ionicons } from '@expo/vector-icons'
 
 const Tab = createBottomTabNavigator({
     screens: {
-        Perfil: ScreenPerfil,
+        Foto: ScreenPhoto,
     }
 })
 
-export function MeuTabNavigation() {
+export function PhotoTabNavigation() {
     return (
         <Tab.Navigator
             screenOptions={{
@@ -20,7 +20,7 @@ export function MeuTabNavigation() {
                 tabBarInactiveTintColor: colors.white,
             }}
         >
-            <Tab.Screen name='Perfil' component={ScreenPerfil}
+            <Tab.Screen name='Foto' component={ScreenPhoto}
                 options={{
                     tabBarIcon: () => (
                         <Ionicons name="person" size={24} color={colors.white} />

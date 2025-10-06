@@ -1,12 +1,13 @@
 import { createDrawerNavigator } from '@react-navigation/drawer'
-import { BottomTabNavigation } from './MeuTabNavigation'
+import { MeuTabNavigation } from './MeuTabNavigation'
 import { colors } from '../styles/colors'
 import { VinylRecordStackNavigation } from './VinylRecordStackNavigation'
+import { ScreenPhoto } from '../screens'
 
 const Drawer = createDrawerNavigator({
     initialRouteName: 'Meu',
     screens: {
-        Meu: BottomTabNavigation
+        Meu: MeuTabNavigation
     }
 })
 
@@ -21,8 +22,9 @@ export function MainDrawerNavigation() {
             drawerActiveTintColor: colors.white,
             drawerInactiveTintColor: colors.white
         }}>
-            <Drawer.Screen component={BottomTabNavigation} name='Meu' />
+            <Drawer.Screen component={MeuTabNavigation} name='Meu' />
             <Drawer.Screen component={VinylRecordStackNavigation} name='Vinyl Records' />
+            <Drawer.Screen component={ScreenPhoto} name='Foto' />
         </Drawer.Navigator>
     )
 }
