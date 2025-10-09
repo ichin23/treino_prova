@@ -5,4 +5,7 @@ export { ListVinylRecordsScreen as ScreenListVinylRecords } from "./Vinyl/ListVi
 export { VinylRecordDetailsScreen as ScreenVinylRecordDetails } from "./Vinyl/VinylRecordDetails"
 export { RegisterVinylRecordScreen as ScreenRegisterVinylRecord } from "./Vinyl/RegisterVinylRecord"
 export { EditVinylRecordScreen as ScreenEditVinylRecord } from "./Vinyl/EditVinylRecord"
-export { PhotoScreen as ScreenPhoto } from "./Camera/Photo"
+export { CameraScreen as ScreenPhoto } from "./Camera"
+export { ImagemScreen as  ScreenImagem} from "./Imagens"
+export {VideoScreen as ScreenVideo} from "./Video"
+export {LocationMap as ScreenLocation} from "./LocationMap"

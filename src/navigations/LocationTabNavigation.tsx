@@ -1,15 +1,15 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { ScreenPhoto } from '../screens'
+import { ScreenLocation } from '../screens'
 import { colors } from '../styles/colors'
-import { Ionicons } from '@expo/vector-icons'
+import { FontAwesome5 } from '@expo/vector-icons'
 
 const Tab = createBottomTabNavigator({
     screens: {
-        Foto: ScreenPhoto,
+        Location: ScreenLocation
     }
 })
 
-export function PhotoTabNavigation() {
+export function LocationTabNavigation() {
     return (
         <Tab.Navigator
             screenOptions={{
@@ -20,10 +20,10 @@ export function PhotoTabNavigation() {
                 tabBarInactiveTintColor: colors.white,
             }}
         >
-            <Tab.Screen name='Foto' component={ScreenPhoto}
+            <Tab.Screen name='Location' component={ScreenLocation} 
                 options={{
                     tabBarIcon: () => (
-                        <Ionicons name="person" size={24} color={colors.white} />
+                        <FontAwesome5 name="map-marked-alt" size={24} color={colors.white} />
                     ),
                 }}
             />

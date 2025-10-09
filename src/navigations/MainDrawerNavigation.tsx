@@ -2,7 +2,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer'
 import { MeuTabNavigation } from './MeuTabNavigation'
 import { colors } from '../styles/colors'
 import { VinylRecordStackNavigation } from './VinylRecordStackNavigation'
-import { ScreenPhoto } from '../screens'
+import { CameraTabNavigation } from './CameraTabNavigation'
+import { LocationTabNavigation } from './LocationTabNavigation'
 
 const Drawer = createDrawerNavigator({
     initialRouteName: 'Meu',
@@ -24,7 +25,8 @@ export function MainDrawerNavigation() {
         }}>
             <Drawer.Screen component={MeuTabNavigation} name='Meu' />
             <Drawer.Screen component={VinylRecordStackNavigation} name='Vinyl Records' />
-            <Drawer.Screen component={ScreenPhoto} name='Foto' />
+            <Drawer.Screen component={CameraTabNavigation} name='Fotos' />
+            <Drawer.Screen component={LocationTabNavigation} name='Location' />
         </Drawer.Navigator>
     )
 }
