@@ -42,6 +42,7 @@ export function CameraScreen() {
     if (permissionMedia?.status !== 'granted') {
       await requestPermissionMedia();
     }
+    console.log(photo?.uri)
     const asset = await MediaLibrary.createAssetAsync(photo!.uri)
     MediaLibrary.createAlbumAsync("Images", asset, false)
     Alert.alert("Imagem salva com sucesso!")
@@ -64,7 +65,7 @@ export function CameraScreen() {
 
   return (
     <View style={styles.container}>
-      <CameraView style={styles.camera} facing={facing} ref={ref}>
+      <CameraView style={styles.camera} facing={facing} ref={ref} />
         <View style={styles.headerCamera}>
           <TouchableOpacity onPress={toggleCameraFacing}>
             <AntDesign name="retweet" size={70} color={colors.black} />
@@ -73,7 +74,6 @@ export function CameraScreen() {
         <View style={styles.footerCamera}>
           <TouchableOpacity onPress={takePicture} style={styles.ball} />
         </View>
-      </CameraView>
     </View>
   );
 }

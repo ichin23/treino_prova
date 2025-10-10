@@ -37,9 +37,10 @@
       [
         "expo-media-library",
         {
-          "photosPermission": "Permita $(PRODUCT_NAME) acessar suas fotos.",
-          "savePhotosPermission": "Permita $(PRODUCT_NAME) salvar suas fotos.",
-          "isAccessMediaLocationEnabled": true
+          "photosPermission": "Allow $(PRODUCT_NAME) to access your photos.",
+          "savePhotosPermission": "Allow $(PRODUCT_NAME) to save photos.",
+          "isAccessMediaLocationEnabled": true,
+          "granularPermissions": ["audio", "photo"]
         }
       ],
       [

@@ -17,7 +17,12 @@ export function LocationMap() {
   const [region, setRegion] = useState<Region>();
   const [marker, setMarker] = useState<Region[]>();
   const [errorMsg, setErrorMsg] = useState<null | string>(null);
-  const [destination, setDestination] = useState<Region | null>(null)
+  const [destination, setDestination] = useState<Region | null>({
+    latitude: -21.5715146,
+        longitude: -45.4520052,
+        latitudeDelta: 0.004,
+        longitudeDelta: 0.004
+  })
   const mapRef = useRef<MapView>(null)
 
   useEffect(() => {
@@ -81,19 +86,19 @@ export function LocationMap() {
       {!region && <Text style={styles.paragraph}>{text}</Text>}
       {region && (
         <>
-          <GooglePlacesAutocomplete
+          {/* <GooglePlacesAutocomplete
             styles={{ container: styles.searchContainer, textInput: styles.searchInput }}
             placeholder="Para onde?"
             fetchDetails={true}
             GooglePlacesDetailsQuery={{ fields: "geometry" }}
             enablePoweredByContainer={false}
             query={{
-              key: 'AIzaSyDdDU8GLhWRZjrmp55NTqrR1GUL9BOA9pA',
+              key: process.env.EXPO_PUBLIC_GOOGLE_PLACES,
               language: 'pt-BR'
             }}
             onFail={setErrorMsg}
             onPress={handleDestination}
-          />
+          /> */}
           <MapView style={styles.map} region={region}
             showsUserLocation={true} ref={mapRef}
           >
@@ -113,7 +118,7 @@ export function LocationMap() {
               <MapViewDirections
                 origin={region}
                 destination={destination}
-                apikey="AIzaSyDdDU8GLhWRZjrmp55NTqrR1GUL9BOA9pA"
+                apikey={process.env.EXPO_PUBLIC_GOOGLE_PLACES}
                 strokeColor={colors.black}
                 strokeWidth={7}
                 lineDashPattern={[0]}
