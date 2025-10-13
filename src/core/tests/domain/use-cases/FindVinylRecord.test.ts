@@ -7,7 +7,7 @@ describe('FindVinylRecord', () => {
     MockVinylRecordRepository.getInstance().reset();
   });
   it('should find a vinyl record by id', async () => {
-    const vinylRecordRepository = new MockVinylRecordRepository();
+    const vinylRecordRepository = MockVinylRecordRepository.getInstance();
     const registerVinylRecord = new RegisterVinylRecord(vinylRecordRepository);
     const findVinylRecord = new FindVinylRecord(vinylRecordRepository);
 
@@ -17,6 +17,7 @@ describe('FindVinylRecord', () => {
       year: 1969,
       numberOfTracks: 17,
       photoUrl: 'https://example.com/abbey-road.jpg',
+      ownerId: 'user-1',
     });
 
     const foundRecord = await findVinylRecord.execute({ id: record.id });
@@ -25,7 +26,7 @@ describe('FindVinylRecord', () => {
   });
 
   it('should return null if the record is not found', async () => {
-    const vinylRecordRepository = new MockVinylRecordRepository();
+    const vinylRecordRepository = MockVinylRecordRepository.getInstance();
     const findVinylRecord = new FindVinylRecord(vinylRecordRepository);
 
     const foundRecord = await findVinylRecord.execute({ id: '1' });

@@ -34,7 +34,8 @@ export class UpdateVinylRecord {
       newAlbum,
       newYear,
       newNumberOfTracks,
-      newPhoto
+      newPhoto,
+      record.ownerId
     );
 
     await this.vinylRecordRepository.update(updatedRecord);

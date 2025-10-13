@@ -5,6 +5,7 @@ import { colors } from '../../styles/colors';
 import { ComponentButtonInterface, ComponentLoading } from '../../components';
 import { makeVinylRecordUseCases } from '../../core/factories/makeVinylRecordUseCases';
 import { VinylRecordTypes } from '../../navigations/VinylRecordStackNavigation';
+import { useAuth } from '../../context/auth';
 
 export function RegisterVinylRecordScreen({ navigation }: VinylRecordTypes) {
   const [band, setBand] = useState('');
@@ -15,10 +16,16 @@ export function RegisterVinylRecordScreen({ navigation }: VinylRecordTypes) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const vinylRecordUseCases = makeVinylRecordUseCases();
+  const { user } = useAuth();
 
   async function handleRegister() {
     setLoading(true);
     setError(null);
+    if (!user) {
+      setError('You must be logged in to register a vinyl record.');
+      setLoading(false);
+      return;
+    }
     try {
       await vinylRecordUseCases.registerVinylRecord.execute({
         band,
@@ -26,6 +33,7 @@ export function RegisterVinylRecordScreen({ navigation }: VinylRecordTypes) {
         year: parseInt(year, 10),
         numberOfTracks: parseInt(numberOfTracks, 10),
         photoUrl,
+        ownerId: user.id,
       });
       Alert.alert('Success', 'Vinyl record registered successfully');
       navigation.navigate('ListVinylRecords');

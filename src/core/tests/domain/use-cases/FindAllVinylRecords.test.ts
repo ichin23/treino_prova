@@ -7,7 +7,7 @@ describe('FindAllVinylRecords', () => {
     MockVinylRecordRepository.getInstance().reset();
   });
   it('should find all vinyl records', async () => {
-    const vinylRecordRepository = new MockVinylRecordRepository();
+    const vinylRecordRepository = MockVinylRecordRepository.getInstance();
     const registerVinylRecord = new RegisterVinylRecord(vinylRecordRepository);
     const findAllVinylRecords = new FindAllVinylRecords(vinylRecordRepository);
 
@@ -17,6 +17,7 @@ describe('FindAllVinylRecords', () => {
       year: 1969,
       numberOfTracks: 17,
       photoUrl: 'https://example.com/abbey-road.jpg',
+      ownerId: 'user-1',
     });
 
     await registerVinylRecord.execute({
@@ -25,6 +26,7 @@ describe('FindAllVinylRecords', () => {
       year: 1975,
       numberOfTracks: 12,
       photoUrl: 'https://example.com/a-night-at-the-opera.jpg',
+      ownerId: 'user-2',
     });
 
     const records = await findAllVinylRecords.execute();

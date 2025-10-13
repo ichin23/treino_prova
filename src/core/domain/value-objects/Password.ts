@@ -9,6 +9,7 @@ export class Password {
   }
 
   private static validate(password: string): boolean {
+    console.log(password)
     return password.length >= 8;
   }
 

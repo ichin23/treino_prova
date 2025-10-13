@@ -30,6 +30,7 @@ export function RegisterScreen({ navigation }: LoginTypes) {
       Alert.alert('Success', 'User registered successfully');
       navigation.navigate('Login');
     } catch (err) {
+      console.log(err)
       setError('Failed to register user');
     } finally {
       setLoading(false);

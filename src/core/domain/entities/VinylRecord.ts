@@ -8,7 +8,8 @@ export class VinylRecord {
     readonly album: Name,
     readonly year: number,
     readonly numberOfTracks: number,
-    readonly photo: Photo
+    readonly photo: Photo,
+    readonly ownerId: string
   ) {}
 
   static create(
@@ -17,8 +18,9 @@ export class VinylRecord {
     album: Name,
     year: number,
     numberOfTracks: number,
-    photo: Photo
+    photo: Photo,
+    ownerId: string
   ): VinylRecord {
-    return new VinylRecord(id, band, album, year, numberOfTracks, photo);
+    return new VinylRecord(id, band, album, year, numberOfTracks, photo, ownerId);
   }
 }

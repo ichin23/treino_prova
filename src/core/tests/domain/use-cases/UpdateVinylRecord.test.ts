@@ -7,7 +7,7 @@ describe('UpdateVinylRecord', () => {
     MockVinylRecordRepository.getInstance().reset();
   });
   it('should update a vinyl record', async () => {
-    const vinylRecordRepository = new MockVinylRecordRepository();
+    const vinylRecordRepository = MockVinylRecordRepository.getInstance();
     const registerVinylRecord = new RegisterVinylRecord(vinylRecordRepository);
     const updateVinylRecord = new UpdateVinylRecord(vinylRecordRepository);
 
@@ -17,6 +17,7 @@ describe('UpdateVinylRecord', () => {
       year: 1969,
       numberOfTracks: 17,
       photoUrl: 'https://example.com/abbey-road.jpg',
+      ownerId: 'user-1',
     });
 
     const updatedRecord = await updateVinylRecord.execute({
@@ -25,10 +26,11 @@ describe('UpdateVinylRecord', () => {
     });
 
     expect(updatedRecord.album.value).toBe('The White Album');
+    expect(updatedRecord.ownerId).toBe('user-1');
   });
 
   it('should throw an error if the vinyl record is not found', async () => {
-    const vinylRecordRepository = new MockVinylRecordRepository();
+    const vinylRecordRepository = MockVinylRecordRepository.getInstance();
     const updateVinylRecord = new UpdateVinylRecord(vinylRecordRepository);
 
     await expect(
@@ -40,7 +42,7 @@ describe('UpdateVinylRecord', () => {
   });
 
   it('should not update vinyl record fields if they are not provided', async () => {
-    const vinylRecordRepository = new MockVinylRecordRepository();
+    const vinylRecordRepository = MockVinylRecordRepository.getInstance();
     const registerVinylRecord = new RegisterVinylRecord(vinylRecordRepository);
     const updateVinylRecord = new UpdateVinylRecord(vinylRecordRepository);
 
@@ -50,6 +52,7 @@ describe('UpdateVinylRecord', () => {
       year: 1969,
       numberOfTracks: 17,
       photoUrl: 'https://example.com/abbey-road.jpg',
+      ownerId: 'user-1',
     });
 
     const updatedRecord = await updateVinylRecord.execute({
@@ -61,5 +64,6 @@ describe('UpdateVinylRecord', () => {
     expect(updatedRecord.year).toBe(1969);
     expect(updatedRecord.numberOfTracks).toBe(17);
     expect(updatedRecord.photo.url).toBe('https://example.com/abbey-road.jpg');
+    expect(updatedRecord.ownerId).toBe('user-1');
   });
 });

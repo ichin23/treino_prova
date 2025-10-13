@@ -10,7 +10,8 @@ describe('VinylRecord', () => {
       Name.create('Abbey Road'),
       1969,
       17,
-      Photo.create('https://example.com/abbey-road.jpg')
+      Photo.create('https://example.com/abbey-road.jpg'),
+      'user-1'
     );
 
     expect(record.id).toBe('1');
@@ -19,5 +20,6 @@ describe('VinylRecord', () => {
     expect(record.year).toBe(1969);
     expect(record.numberOfTracks).toBe(17);
     expect(record.photo.url).toBe('https://example.com/abbey-road.jpg');
+    expect(record.ownerId).toBe('user-1');
   });
 });

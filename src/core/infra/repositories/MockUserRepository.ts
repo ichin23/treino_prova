@@ -8,10 +8,10 @@ import { GeoCoordinates } from '../../domain/value-objects/GeoCoordinates';
 export class MockUserRepository implements IUserRepository {
   private static instance: MockUserRepository;
   private users: User[] = [{
-    id: "1",
+    id: "user-1",
     name: Name.create("Lázaro"),
     email: Email.create("lazarodu@gmail.com"),
-    password: Password.create("hashed_123"),
+    password: Password.create("hashed_123"), // Keep this for the mock authenticate
     location: GeoCoordinates.create(50, 100)
   }];
 
@@ -24,8 +24,29 @@ export class MockUserRepository implements IUserRepository {
     return MockUserRepository.instance;
   }
 
-  async save(user: User): Promise<void> {
-    this.users.push(user);
+  async register(user: User): Promise<User> {
+    const hashedPassword = `hashed_${user.password.value}`;
+    const newUser = User.create(
+      Math.random().toString(),
+      user.name,
+      user.email,
+      Password.create(hashedPassword),
+      user.location
+    );
+    this.users.push(newUser);
+    return newUser;
+  }
+
+  async authenticate(email: string, password: string): Promise<User> {
+    const user = await this.findByEmail(email);
+    if (!user) {
+      throw new Error('Invalid credentials');
+    }
+    const isPasswordValid = `hashed_${password}` === user.password.value;
+    if (!isPasswordValid) {
+      throw new Error('Invalid credentials');
+    }
+    return user;
   }
 
   async findByEmail(email: string): Promise<User | null> {

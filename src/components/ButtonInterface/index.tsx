@@ -17,7 +17,8 @@ export function ButtonInterface({ title, type = 'primary', children, ...rest }: 
       {...rest}
     >
       <View style={styles.contentRow}>
-        {children ? children : <Text style={styles.text}>{title}</Text>}
+        {children}
+        {title && <Text style={styles.text}>{title}</Text>}
       </View>
     </TouchableOpacity>
   )

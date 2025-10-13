@@ -6,7 +6,7 @@ describe('RegisterVinylRecord', () => {
     MockVinylRecordRepository.getInstance().reset();
   });
   it('should register a new vinyl record', async () => {
-    const vinylRecordRepository = new MockVinylRecordRepository();
+    const vinylRecordRepository = MockVinylRecordRepository.getInstance();
     const registerVinylRecord = new RegisterVinylRecord(vinylRecordRepository);
 
     const record = await registerVinylRecord.execute({
@@ -15,11 +15,13 @@ describe('RegisterVinylRecord', () => {
       year: 1969,
       numberOfTracks: 17,
       photoUrl: 'https://example.com/abbey-road.jpg',
+      ownerId: 'user-1',
     });
 
     expect(record).toBeDefined();
     expect(record.band.value).toBe('The Beatles');
     expect(record.album.value).toBe('Abbey Road');
+    expect(record.ownerId).toBe('user-1');
 
     const foundRecord = await vinylRecordRepository.findById(record.id);
     expect(foundRecord).toBe(record);

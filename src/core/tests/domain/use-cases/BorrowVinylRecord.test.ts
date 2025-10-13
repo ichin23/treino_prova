@@ -12,9 +12,9 @@ describe('BorrowVinylRecord', () => {
     MockLoanRepository.getInstance().reset();
   });
   it('should borrow a vinyl record', async () => {
-    const userRepository = new MockUserRepository();
-    const vinylRecordRepository = new MockVinylRecordRepository();
-    const loanRepository = new MockLoanRepository();
+    const userRepository = MockUserRepository.getInstance();
+    const vinylRecordRepository =  MockVinylRecordRepository.getInstance();
+    const loanRepository =  MockLoanRepository.getInstance();
 
     const registerUser = new RegisterUser(userRepository);
     const registerVinylRecord = new RegisterVinylRecord(vinylRecordRepository);
@@ -38,6 +38,7 @@ describe('BorrowVinylRecord', () => {
       year: 1969,
       numberOfTracks: 17,
       photoUrl: 'https://example.com/abbey-road.jpg',
+      ownerId: 'user-1'
     });
 
     const loan = await borrowVinylRecord.execute({
@@ -51,9 +52,9 @@ describe('BorrowVinylRecord', () => {
   });
 
   it('should throw an error if the vinyl record is already on loan', async () => {
-    const userRepository = new MockUserRepository();
-    const vinylRecordRepository = new MockVinylRecordRepository();
-    const loanRepository = new MockLoanRepository();
+    const userRepository =  MockUserRepository.getInstance();
+    const vinylRecordRepository =  MockVinylRecordRepository.getInstance();
+    const loanRepository =  MockLoanRepository.getInstance();
 
     const registerUser = new RegisterUser(userRepository);
     const registerVinylRecord = new RegisterVinylRecord(vinylRecordRepository);
@@ -77,6 +78,7 @@ describe('BorrowVinylRecord', () => {
       year: 1969,
       numberOfTracks: 17,
       photoUrl: 'https://example.com/abbey-road.jpg',
+      ownerId: 'user-1'
     });
 
     await borrowVinylRecord.execute({
@@ -93,9 +95,9 @@ describe('BorrowVinylRecord', () => {
   });
 
   it('should throw an error if the user is not found', async () => {
-    const userRepository = new MockUserRepository();
-    const vinylRecordRepository = new MockVinylRecordRepository();
-    const loanRepository = new MockLoanRepository();
+    const userRepository =  MockUserRepository.getInstance();
+    const vinylRecordRepository =  MockVinylRecordRepository.getInstance();
+    const loanRepository =  MockLoanRepository.getInstance();
 
     const registerVinylRecord = new RegisterVinylRecord(vinylRecordRepository);
     const borrowVinylRecord = new BorrowVinylRecord(
@@ -110,6 +112,7 @@ describe('BorrowVinylRecord', () => {
       year: 1969,
       numberOfTracks: 17,
       photoUrl: 'https://example.com/abbey-road.jpg',
+      ownerId: 'user-1'
     });
 
     await expect(
@@ -121,9 +124,9 @@ describe('BorrowVinylRecord', () => {
   });
 
   it('should throw an error if the vinyl record is not found', async () => {
-    const userRepository = new MockUserRepository();
-    const vinylRecordRepository = new MockVinylRecordRepository();
-    const loanRepository = new MockLoanRepository();
+    const userRepository =  MockUserRepository.getInstance();
+    const vinylRecordRepository =  MockVinylRecordRepository.getInstance();
+    const loanRepository =  MockLoanRepository.getInstance();
 
     const registerUser = new RegisterUser(userRepository);
     const borrowVinylRecord = new BorrowVinylRecord(

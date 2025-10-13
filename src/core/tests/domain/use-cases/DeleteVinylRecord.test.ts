@@ -7,7 +7,7 @@ describe('DeleteVinylRecord', () => {
     MockVinylRecordRepository.getInstance().reset();
   });
   it('should delete a vinyl record', async () => {
-    const vinylRecordRepository = new MockVinylRecordRepository();
+    const vinylRecordRepository = MockVinylRecordRepository.getInstance();
     const registerVinylRecord = new RegisterVinylRecord(vinylRecordRepository);
     const deleteVinylRecord = new DeleteVinylRecord(vinylRecordRepository);
 
@@ -17,6 +17,7 @@ describe('DeleteVinylRecord', () => {
       year: 1969,
       numberOfTracks: 17,
       photoUrl: 'https://example.com/abbey-road.jpg',
+      ownerId: 'user-1',
     });
 
     await deleteVinylRecord.execute({ id: record.id });
@@ -27,7 +28,7 @@ describe('DeleteVinylRecord', () => {
   });
 
   it('should throw an error if the vinyl record is not found', async () => {
-    const vinylRecordRepository = new MockVinylRecordRepository();
+    const vinylRecordRepository = MockVinylRecordRepository.getInstance();
     const deleteVinylRecord = new DeleteVinylRecord(vinylRecordRepository);
 
     await expect(deleteVinylRecord.execute({ id: '1' })).rejects.toThrow('Vinyl record not found');

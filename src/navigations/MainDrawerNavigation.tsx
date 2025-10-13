@@ -26,7 +26,7 @@ export function MainDrawerNavigation() {
             <Drawer.Screen component={MeuTabNavigation} name='Meu' />
             <Drawer.Screen component={VinylRecordStackNavigation} name='Vinyl Records' />
             <Drawer.Screen component={CameraTabNavigation} name='Fotos' />
-            <Drawer.Screen component={LocationTabNavigation} name='Location' />
+            <Drawer.Screen component={LocationTabNavigation} name='Localization' />
         </Drawer.Navigator>
     )
 }

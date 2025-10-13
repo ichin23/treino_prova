@@ -6,7 +6,7 @@ describe('RegisterUser', () => {
     MockUserRepository.getInstance().reset();
   });
   it('should register a new user', async () => {
-    const userRepository = new MockUserRepository();
+    const userRepository =  MockUserRepository.getInstance();
     const registerUser = new RegisterUser(userRepository);
 
     const user = await registerUser.execute({
@@ -26,7 +26,7 @@ describe('RegisterUser', () => {
   });
 
   it('should throw an error if the user already exists', async () => {
-    const userRepository = new MockUserRepository();
+    const userRepository =  MockUserRepository.getInstance();
     const registerUser = new RegisterUser(userRepository);
 
     await registerUser.execute({

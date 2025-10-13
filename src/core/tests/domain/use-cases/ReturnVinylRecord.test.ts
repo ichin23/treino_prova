@@ -13,9 +13,9 @@ describe('ReturnVinylRecord', () => {
     MockLoanRepository.getInstance().reset();
   });
   it('should return a vinyl record', async () => {
-    const userRepository = new MockUserRepository();
-    const vinylRecordRepository = new MockVinylRecordRepository();
-    const loanRepository = new MockLoanRepository();
+    const userRepository =  MockUserRepository.getInstance();
+    const vinylRecordRepository =  MockVinylRecordRepository.getInstance();
+    const loanRepository =  MockLoanRepository.getInstance();
 
     const registerUser = new RegisterUser(userRepository);
     const registerVinylRecord = new RegisterVinylRecord(vinylRecordRepository);
@@ -40,6 +40,7 @@ describe('ReturnVinylRecord', () => {
       year: 1969,
       numberOfTracks: 17,
       photoUrl: 'https://example.com/abbey-road.jpg',
+      ownerId: 'user-1'
     });
 
     const loan = await borrowVinylRecord.execute({
@@ -53,7 +54,7 @@ describe('ReturnVinylRecord', () => {
   });
 
   it('should throw an error if the loan is not found', async () => {
-    const loanRepository = new MockLoanRepository();
+    const loanRepository =  MockLoanRepository.getInstance();
     const returnVinylRecord = new ReturnVinylRecord(loanRepository);
 
     await expect(returnVinylRecord.execute({ loanId: '1' })).rejects.toThrow(

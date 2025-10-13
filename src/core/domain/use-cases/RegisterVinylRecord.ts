@@ -12,8 +12,9 @@ export class RegisterVinylRecord {
     year: number;
     numberOfTracks: number;
     photoUrl: string;
+    ownerId: string;
   }): Promise<VinylRecord> {
-    const { band, album, year, numberOfTracks, photoUrl } = params;
+    const { band, album, year, numberOfTracks, photoUrl, ownerId } = params;
 
     const record = VinylRecord.create(
       Math.random().toString(),
@@ -21,7 +22,8 @@ export class RegisterVinylRecord {
       Name.create(album),
       year,
       numberOfTracks,
-      Photo.create(photoUrl)
+      Photo.create(photoUrl),
+      ownerId
     );
 
     await this.vinylRecordRepository.save(record);

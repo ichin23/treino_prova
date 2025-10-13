@@ -7,7 +7,7 @@ describe('UpdateUser', () => {
     MockUserRepository.getInstance().reset();
   });
   it('should update a user', async () => {
-    const userRepository = new MockUserRepository();
+    const userRepository =  MockUserRepository.getInstance();
     const registerUser = new RegisterUser(userRepository);
     const updateUser = new UpdateUser(userRepository);
 
@@ -28,7 +28,7 @@ describe('UpdateUser', () => {
   });
 
   it('should throw an error if the user is not found', async () => {
-    const userRepository = new MockUserRepository();
+    const userRepository = MockUserRepository.getInstance();
     const updateUser = new UpdateUser(userRepository);
 
     await expect(
@@ -40,7 +40,7 @@ describe('UpdateUser', () => {
   });
 
   it('should not update user fields if they are not provided', async () => {
-    const userRepository = new MockUserRepository();
+    const userRepository =  MockUserRepository.getInstance();
     const registerUser = new RegisterUser(userRepository);
     const updateUser = new UpdateUser(userRepository);
 
@@ -63,7 +63,7 @@ describe('UpdateUser', () => {
   });
 
   it('should update only the email', async () => {
-    const userRepository = new MockUserRepository();
+    const userRepository =  MockUserRepository.getInstance();
     const registerUser = new RegisterUser(userRepository);
     const updateUser = new UpdateUser(userRepository);
 
@@ -87,7 +87,7 @@ describe('UpdateUser', () => {
   });
 
   it('should update only the location', async () => {
-    const userRepository = new MockUserRepository();
+    const userRepository =  MockUserRepository.getInstance();
     const registerUser = new RegisterUser(userRepository);
     const updateUser = new UpdateUser(userRepository);
 
