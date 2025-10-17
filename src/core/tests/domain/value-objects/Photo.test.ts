@@ -1,12 +1,13 @@
-import { Photo } from '../../../domain/value-objects/Photo';
+import { Photo } from "../../../domain/value-objects/Photo"
 
-describe('Photo', () => {
-  it('should create a valid photo URL', () => {
-    const photo = Photo.create('https://example.com/photo.jpg');
-    expect(photo.url).toBe('https://example.com/photo.jpg');
-  });
+describe("Test criação do VO Photo", ()=>{
+    it("Instancia corretamente", ()=>{
+        let photo = Photo.create("http://nvosndv.com")
 
-  it('should throw an error for an invalid URL', () => {
-    expect(() => Photo.create('invalid-url')).toThrow('Invalid photo URL');
-  });
-});
+        expect(photo.url).toBe("http://nvosndv.com")
+    })
+
+    it("URL inválida gera erro", ()=>{
+        expect(()=>Photo.create("vosndv.com")).toThrow("Invalid photo URL")
+    })
+})

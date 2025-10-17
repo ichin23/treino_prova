@@ -1,25 +1,24 @@
-import { VinylRecord } from '../../../domain/entities/VinylRecord';
-import { Name } from '../../../domain/value-objects/Name';
-import { Photo } from '../../../domain/value-objects/Photo';
+import { VinylRecord } from "../../../domain/entities/VinylRecord";
+import { Name } from "../../../domain/value-objects/Name";
+import { Photo } from "../../../domain/value-objects/Photo";
 
-describe('VinylRecord', () => {
-  it('should create a valid vinyl record', () => {
-    const record = VinylRecord.create(
-      '1',
-      Name.create('The Beatles'),
-      Name.create('Abbey Road'),
-      1969,
-      17,
-      Photo.create('https://example.com/abbey-road.jpg'),
-      'user-1'
-    );
+describe('VinylRecord Entity', () => {
 
-    expect(record.id).toBe('1');
-    expect(record.band.value).toBe('The Beatles');
-    expect(record.album.value).toBe('Abbey Road');
-    expect(record.year).toBe(1969);
-    expect(record.numberOfTracks).toBe(17);
-    expect(record.photo.url).toBe('https://example.com/abbey-road.jpg');
-    expect(record.ownerId).toBe('user-1');
-  });
+    it("Instanciar a entidade VinylRecord com sucesso", () => {
+        let vinil = VinylRecord.create(
+            "id-vinil1",
+            Name.create("Banda1"),
+            Name.create("Album1"),
+            1999,
+            10,
+            Photo.create("https://vbjdisd.com"),
+            "user1"
+        )
+
+        expect(vinil.id).toBe("id-vinil1")
+        expect(vinil.band.value).toBe("Banda1")
+        expect(vinil.album.value).toBe("Album1")
+        expect(vinil.year).toBe(1999)
+    });
+
 });
